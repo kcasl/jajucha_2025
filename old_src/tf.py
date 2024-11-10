@@ -111,3 +111,33 @@ def detect_traffic_light_signal(frame):
         print("초록 화살표 감지- 이동 신호")
     else:
         print("신호 감지 안됨")
+
+
+
+
+
+
+while True:
+    d = depth()
+    d_set = [d[0],d[1],d[2]]
+    image = jajucha2.camera.get_image('center')
+    (V,L,R) ,grid = jajucha2.camera.gridFront(image)
+    jajucha2.camera.show_image(grid)
+
+    print(d)
+    left_arm = 0
+    right_arm = 0
+    velocity = 3
+    
+    if sum(d_set) >= 100:
+        left_arm = -6
+        right_arm = -6
+        velocity = 3
+        
+        
+        #jajucha2.control.set_motor(6, 6, 4)
+        #time.sleep(1)
+        
+    jajucha2.control.set_motor(left_arm, right_arm, velocity)
+
+

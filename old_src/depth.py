@@ -8,11 +8,7 @@ def depth():
     depth = jajucha2.camera.get_depth()
     height = 240
     width = int(640/3)
-    x, y = int(320/3), 240
-    L_display = depth[y-int(height/2):y+int(180/2), x - int(width/2):x +int(width/2)] 
-    C_display = depth[y-int(height/2):y+int(180/2), x*2-int(width/2):x*2+int(width/2)] 
-    R_display = depth[y-int(height/2):y+int(180/2), x*3-int(width/2):x*3+int(width/2)] 
-
+     
 
     R_sum = np.mean(R_display)
     C_sum = np.mean(C_display)

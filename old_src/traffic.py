@@ -15,34 +15,22 @@ def traffic_light(img_color, x, y, width, height):
     upper_red_2 = (10, 255, 255)
     lower_green = (40, 50, 50)
     upper_green = (80, 255, 255)
+    lower_blue = (1, 107, 187)
+    upper_blue = (61, 164, 255)
     
     # Mask for red colors
     img_mask_red_1 = cv2.inRange(img_hsv, lower_red_1, upper_red_1)
     img_mask_red_2 = cv2.inRange(img_hsv, lower_red_2, upper_red_2)
     img_mask_red = cv2.bitwise_or(img_mask_red_1, img_mask_red_2)
-    
-    # Mask for green colors
+    img_mask_blue = cv2.bitwise_or(img_hsv, lower_blue, upper_blue)
     img_mask_green = cv2.inRange(img_hsv, lower_green, upper_green)
     
     # Calculate color counts
     red_count = np.sum(img_mask_red == 255)
     green_count = np.sum(img_mask_green == 255)
+    blue_count = np.sum(img_mask_blue == 255)
     
-    return img_mask_red, img_mask_green
+    return red_count, green_count, blue_count
 
 
-
-
-import jajucha2
-
-while True:
-
-    image = jajucha2.camera.get_image('center')
-
-    A,B = traffic_light(image, 320,50,500,100)
-    
-    (V,L,R) ,grid = jajucha2.camera.gridFront(image)
-    jajucha2.camera.show_image(B)
-
-
-    
+traffic_light(image,320,50,500,100)
